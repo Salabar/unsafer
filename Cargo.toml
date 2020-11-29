@@ -1,0 +1,12 @@
+[package]
+name = "unsafer"
+version = "0.1.0"
+authors = ["Maksim Chistyakov"]
+edition = "2018"
+license = "MIT"
+description = "Convenience library for Unsafe Rust"
+repository = "https://github.com/Salabar/unsafer/"
+readme = "README.md"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
