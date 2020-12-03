@@ -1,7 +1,6 @@
 use core::ptr::NonNull;
 use core::marker::PhantomData;
 use core::slice;
-use core::mem::MaybeUninit;
 
 /// When working with raw pointers, one must be careful to avoid mutable aliasing. Bind is a zero-sized structure that
 /// makes it easier by ensuring only one pointer can be dereferenced at a time in the same scope.
@@ -77,27 +76,6 @@ impl <T> Pointer<T> for NonNull<T> {
 
     fn as_ptr(&self) -> *const T {
         (*self).as_ptr()
-    }
-}
-
-impl <T> Pointer<T> for &MaybeUninit<T> {
-    fn as_mut_ptr(&mut self) -> *mut T {
-        panic!("Mutably accessing an immutable MaybeUninit would be unsound");
-    }
-
-    fn as_ptr(&self) -> *const T {
-        (**self).as_ptr()
-    }
-}
-
-
-impl <T> Pointer<T> for &mut MaybeUninit<T> {
-    fn as_mut_ptr(&mut self) -> *mut T {
-        (**self).as_mut_ptr()
-    }
-
-    fn as_ptr(&self) -> *const T {
-        (**self).as_ptr()
     }
 }
 
